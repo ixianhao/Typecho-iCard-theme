@@ -9,3 +9,7 @@ iCard取自网上开源的html模板的名字，当时看到这个模板的时�
 
 ## 页面演示：
 ![image](https://github.com/ixianhao/Typecho-iCard-theme/assets/42532653/85759b4f-5ad8-4ecc-83c4-41d78350f93d)
+
+## 鸣谢
+在[vCards](https://github.com/xin660/Typecho-vCards-theme)基础上修改，建议大家多支持原版，功能更多!  
+https://github.com/xin660/Typecho-vCards-theme
