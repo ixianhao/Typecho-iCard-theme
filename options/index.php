@@ -19,7 +19,7 @@ echo <<<EOF
         <li data-current="options-notice">介绍</li>
         <li data-current="options-home">首页头部</li>
 	<li data-current="options-contact">联系信息</li>
-        <li data-current="options-more">更多页面</li>
+        <li data-current="options-more">侧边栏设置</li>
         <li data-current="options-orther">其他</li>
     </ul>
 </div>
