@@ -1875,12 +1875,14 @@ padding: 0.15rem 0.1rem;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: #5E6E80;
 }
 .news-excerpt p {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;  
     overflow: hidden;
+    color: #5E6E80;
 }
 
 
