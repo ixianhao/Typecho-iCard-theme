@@ -47,7 +47,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 		</div>
 		<div class="news-item__caption">
                         <h2 class="title title--h4">
-                            <?php $this->sticky(); $this->title(1, '...') ?>
+                            <?php $this->sticky(); $this->title(20, '') ?>
                         </h2>
 
                         <p class="news-excerpt" style="font-weight: bold;">
