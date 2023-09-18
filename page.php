@@ -16,4 +16,5 @@
         </article>
         <?php $this->need('layout/comments.php'); ?>
     </div><!-- end #main-->
+</div>    
     <?php $this->need('layout/footer.php'); ?>
