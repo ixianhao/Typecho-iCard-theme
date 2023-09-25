@@ -6,8 +6,18 @@ Typecho主题-iCard
 ## 介绍：
 iCard取自网上开源的html模板的名字，当时看到这个模板的时候，它本身具有的简约个性便燃起了我开发模板的心，所以就选这套模板进行嵌套typecho模板，这也是我第一次开发模板，还有很多不足。
 
-## 功能：
-该模板具备基本博客功能，外加pjax、移动端启动页 基本配色为黑、白、蓝灰
+## 使用方式：
+#### Linux系统：
+
+1.进入主题目录，命令： `cd usr/themes/` 
+
+2.使用命令：`git clone https://github.com/ixianhao/Typecho-iCard-theme.git`下载主题文件。
+
+3.更改文件夹目录名称为iCard，命令：`mv Typecho-iCard-theme iCard`
+
+#### windows系统：
+
+1、点击<img src="https://user-images.githubusercontent.com/42532653/270278389-9e4efa38-90f5-4fee-9dc4-ddd6da91f795.png" style="width: 60px; height: 25px;">按钮，下载文件，并移动至主题目录`usr/themes/`下，重新命名文件夹为`iCard`。
 
 ## 页面演示：
 ![image](https://github.com/ixianhao/Typecho-iCard-theme/assets/42532653/85759b4f-5ad8-4ecc-83c4-41d78350f93d)
