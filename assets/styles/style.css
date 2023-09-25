@@ -1761,11 +1761,11 @@ button:focus {
   .news-item__date {
     font-size: 0.725rem;
     font-weight: bold;
-padding: 0.06rem 0.1rem;
+    padding: 0.04rem 0.1rem;
     left: 14px;
     top: 10px;
-    width: 80px;
-    height: 22px;
+    width: 72px;
+    height: 19px;
     letter-spacing: 1px;
   }
   .news-item__date span {
