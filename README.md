@@ -27,6 +27,6 @@ iCard取自网上开源的html模板的名字，当时看到这个模板的时�
 https://github.com/xin660/Typecho-vCards-theme
 
 ## 演示站
-[iCard演示站](https://icard.dy.lc)
+[iCard演示站](https://icard.xug.cc)
 后台管理员用户名是: icard
 密码是: Yansi666.
