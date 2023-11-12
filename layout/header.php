@@ -88,7 +88,7 @@
 											p-id="21453" fill="#5e6e80"></path>
 									</svg></a></li>
 							<li><a class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'Email'}"
-									href="<?php $this->options->hd_email() ?>b"><svg
+									href="<?php $this->options->hd_email() ?>"><svg
 										t="1611490799030" class="icon" viewBox="0 0 1024 1024" version="1.1"
 										xmlns="http://www.w3.org/2000/svg" p-id="34500" width="20" height="20">
 										<path
