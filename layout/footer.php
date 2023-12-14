@@ -19,11 +19,11 @@
 <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
 	integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
 	crossorigin="anonymous"></script>
-<script src='//unpkg.com/nprogress@0.2.0/nprogress.js'></script>
+<script src='/usr/themes/iCard/assets/js/nprogress.js'></script>
 <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.2/jquery.fancybox.min.css">
 <script src="https://cdn.staticfile.org/fancybox/3.5.2/jquery.fancybox.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.js"></script>
-<script src='//unpkg.com/nprogress@0.2.0/nprogress.js'></script>
+<script src='/usr/themes/iCard/assets/js/nprogress.js'></script>
 
 
 
