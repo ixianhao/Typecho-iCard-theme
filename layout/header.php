@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/fonts/fonts.css'); ?>">
 	<!-- dark   <link rel="stylesheet" type="text/css" href="<?php $this->options->themeUrl('assets/styles/style-dark.css'); ?>" />-->
 <link rel="stylesheet" href="/usr/themes/iCard/assets/styles/mdui.min.css" />
-<link rel='stylesheet' href='https://unpkg.com/nprogress@0.2.0/nprogress.css'/>
+<link rel='stylesheet' href='/usr/themes/iCard/assets/styles/nprogress.css'/>
 		<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/owo/OwO.min.css'); ?>">
 
 
