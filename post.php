@@ -14,8 +14,8 @@
 	    <div class="caption-post" itemprop="articleBody">
 		<header class="header-post">
                     <h1 class="title title--h1"><?php $this->title() ?></h1>
-                    <p style="font-size:7px;display:inline;font-weight: bold;" class="title title--h1">发布时间：<time datetime="2023-05-12T00:47:36+08:00" itemprop="datePublished"><?php $this->date('Y.m.d'); ?></time></p>
-                    <p style="font-size:7px;display:inline;padding-left:3em;font-weight: bold;" class="title title--h1">文章作者：<?php $this->author(); ?></p>
+                    <p style="font-size:12px;display:inline;font-weight: bold;" class="title title--h1">发布时间：<time datetime="2023-05-12T00:47:36+08:00" itemprop="datePublished"><?php $this->date('Y.m.d'); ?></time></p>
+                    <p style="font-size:12px;display:inline;padding-left:3em;font-weight: bold;" class="title title--h1">文章作者：<?php $this->author(); ?></p>
 		</header> 
 <br /><br />
                 <?php
