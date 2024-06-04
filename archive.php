@@ -51,7 +51,6 @@
                             <?php $this->excerpt(48, '');?>
                         </p>
                 </div>
-
             </article>
 
 
