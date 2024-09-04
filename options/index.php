@@ -50,7 +50,7 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $headbgImgUrl->setAttribute('class', 'options-content options-home');
     $form->addInput($headbgImgUrl);
 
-    $side_bar2_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_mc', NULL, "闲言", _t('<h2>首页侧边栏地址</h2><h4>如果你修改了侧边栏按钮的链接地址，为保证页面状态追踪，请在主题目录中/layout/sidebar.php中修改page后的值，填写html前缀即可</h4>侧边栏第2个按钮名称'), _t('请输入显示名称'));
+    $side_bar2_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_mc', NULL, "闲言", _t('<h2>首页侧边栏地址</h2><h4>因侧边栏链接调用了站点地址，请在后台-基本设置-站点地址中设置好自己的站点地址，否则会访问异常。</h4>侧边栏第2个按钮名称'), _t('请输入显示名称'));
     $side_bar2_mc->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar2_mc);
     $side_bar2_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_url', NULL, "xysy.html", _t('侧边栏第2个按钮链接地址'), _t('请输入显示链接地址'));
