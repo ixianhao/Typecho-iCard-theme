@@ -34,7 +34,7 @@ echo <<<EOF
 </div>
 EOF;
 echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"></script>';
-    $headTitle = new Typecho_Widget_Helper_Form_Element_Text('headTitle', NULL, "ixianhao", _t('首页头部昵称'), _t('请输入你的昵称'));
+    $headTitle = new Typecho_Widget_Helper_Form_Element_Text('headTitle', NULL, "ixianhao", _t('<h2>首页头部</h2><hr>首页头部昵称'), _t('请输入你的昵称'));
     $headTitle->setAttribute('class', 'options-content options-home');
     $form->addInput($headTitle);
     $headStatus = new Typecho_Widget_Helper_Form_Element_Text('headStatus', NULL, "曾经沧海难为水，除却巫山不是云", _t('首页头部一句话介绍'), _t('请输入你的介绍，用于展示在首页昵称下面'));
@@ -54,7 +54,7 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $showCategories = new Typecho_Widget_Helper_Form_Element_Radio('showCategories', array(
         '0' => '关闭',
         '1' => '开启',
-    ), '0', _t('<h3>侧边栏分类</h3>是否在侧边栏显示分类入口？'), _t('开启后将使用 Typecho 默认分类系统，自动列出所有分类及其文章数。<br><strong style="color:red;">【注意】请在后台创建独立页面，缩略名必须填 categories，模板选择「分类」。</strong>'));
+    ), '0', _t('<h2>侧边栏设置</h2><p>因侧边栏链接调用了站点地址，请在后台-基本设置-站点地址中设置好自己的站点地址，否则会访问异常。</p><hr><h3>侧边栏分类</h3>是否在侧边栏显示分类入口？'), _t('开启后将使用 Typecho 默认分类系统，自动列出所有分类及其文章数。<br><strong style="color:red;">【注意】请在后台创建独立页面，缩略名必须填 categories，模板选择「分类」。</strong>'));
     $showCategories->setAttribute('class', 'options-content options-more');
     $form->addInput($showCategories);
 
@@ -66,7 +66,7 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $showTags->setAttribute('class', 'options-content options-more');
     $form->addInput($showTags);
 
-    $side_bar2_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_mc', NULL, "闲言", _t('<h2>首页侧边栏地址</h2><h4>因侧边栏链接调用了站点地址，请在后台-基本设置-站点地址中设置好自己的站点地址，否则会访问异常。</h4>侧边栏第2个按钮名称'), _t('请输入显示名称'));
+    $side_bar2_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_mc', NULL, "闲言", _t('侧边栏第2个按钮名称'), _t('请输入显示名称'));
     $side_bar2_mc->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar2_mc);
     $side_bar2_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_url', NULL, "xysy.html", _t('侧边栏第2个按钮链接地址'), _t('请输入显示链接地址'));
@@ -94,7 +94,7 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
 
 
 
-    $hd_qq = new Typecho_Widget_Helper_Form_Element_Text('hd_qq', NULL, "http://wpa.qq.com/msgrd?v=3&uin=7685082&site=qq&menu=yes", _t('qq'), _t('请输入联系qq'));
+    $hd_qq = new Typecho_Widget_Helper_Form_Element_Text('hd_qq', NULL, "http://wpa.qq.com/msgrd?v=3&uin=7685082&site=qq&menu=yes", _t('<h2>联系信息</h2><hr>qq'), _t('请输入联系qq'));
     $hd_qq->setAttribute('class', 'options-content options-contact');
     $form->addInput($hd_qq); 
     $hd_email = new Typecho_Widget_Helper_Form_Element_Text('hd_email', NULL, "mailto:a@dy.lc", _t('邮箱'), _t('请输入邮箱地址'));
@@ -118,12 +118,12 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
   
     $slimg = new Typecho_Widget_Helper_Form_Element_Select('slimg', array(
         'showon'=>'有图文章显示缩略图，无图文章随机显示缩略图',
-        'Showimg' => '有图文章显示缩略图，无图文章只显示一张固定的缩略图',      
+        'Showimg' => '有图文章显示缩略图，无图文章只显示一张固定的缩略图',
         'showoff' => '有图文章显示缩略图，无图文章则不显示缩略图',
         'allsj' => '所有文章一律显示随机缩略图',
         'guanbi' => '关闭所有缩略图显示'
     ), 'showon',
-    _t('缩略图设置'), _t('默认选择“有图文章显示缩略图，无图文章随机显示缩略图”'));
+    _t('<h2>其他设置</h2><hr>缩略图设置'), _t('默认选择“有图文章显示缩略图，无图文章随机显示缩略图”'));
     $slimg->setAttribute('class', 'options-content options-orther');
     $form->addInput($slimg->multiMode());
   
