@@ -103,15 +103,5 @@ $this->need('layout/sidebar.php');
         </div>
     </div>
 
-<script src="/usr/themes/iCard/assets/js/jquery-3.6.0.min.js"></script>
-<script>
-    // 搜索框回车提交
-    $('form input[name="s"]').on('keypress', function(e) {
-        if (e.which === 13) {
-            $(this).closest('form').submit();
-        }
-    });
-</script>
-
-    <?php $this->need('layout/footer.php'); ?>
+<?php $this->need('layout/footer.php'); ?>
 </div>

@@ -92,23 +92,38 @@
 	$(document).on('pjax:start', function () { NProgress.start(); });
 
 	$(document).on('pjax:end', function () { NProgress.done(); });
-	if (typeof lazyload === "function") {
-		$(document).on('pjax:complete', function () {
-			jQuery(function () {
-				jQuery("div").lazyload({ effect: "fadeIn" });
-			});
-			jQuery(function () {
-				jQuery("img").lazyload({ effect: "fadeIn" });
-			});
+
+	// 侧边栏高亮 —— 修复不稳定的 active 状态
+	function updateActiveLink() {
+		var currentPath = window.location.pathname;
+		// 去掉尾部斜杠统一对比
+		currentPath = currentPath.replace(/\/$/, '');
+
+		// 遍历所有侧边栏链接，按路径匹配
+		$('.nav__item a[data-pjax-state]').each(function () {
+			var linkHref = $(this).attr('href');
+			if (!linkHref || linkHref === 'javascript:;') return;
+
+			// 构造 URL 对象提取路径
+			try {
+				var linkUrl = new URL(linkHref, window.location.origin);
+				var linkPath = linkUrl.pathname.replace(/\/$/, '');
+			} catch (e) {
+				var linkPath = linkHref.replace(/\/$/, '');
+			}
+
+			// 匹配后添加 active
+			$(this).toggleClass('active', linkPath === currentPath);
 		});
-	} else {
-		console.log('lazyload is closed');
 	}
 
-/*	$(document).on('pjax:complete', function() {
-	loadMeting();
-	});
- */ 
+	// 页面首次加载时运行
+	updateActiveLink();
+
+	// Pjax 替换内容后运行
+	$(document).on('pjax:complete', function() {
+		updateActiveLink();
+	}); 
 </script>
 
 
