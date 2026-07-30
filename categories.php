@@ -3,7 +3,7 @@
  * 模板名称：分类 & 标签
  * 展示所有分类和标签及其下属文章，支持搜索
  *
- * @package iCard
+ * @package custom
  * @author ixianhao
  * @version 0.0.3
  */
