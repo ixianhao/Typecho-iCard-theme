@@ -79,28 +79,31 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $showTags->setAttribute('class', 'options-content options-more');
     $form->addInput($showTags);
 
-    $side_bar2_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_mc', NULL, "闲言", _t('侧边栏第2个按钮名称'), _t('请输入显示名称'));
+    $side_bar2_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_mc', NULL, "闲言", _t('<hr><div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #17a2b8; margin-bottom: 10px;"><strong>💡 独立页面提醒：</strong>若配置了此按钮，请务必在「管理 - 独立页面」中创建一个缩略名为对应前缀（不带 .html）的页面，否则点击将 404 报错。</div><strong>🔘 【侧边栏自定义按钮 1】</strong><br>按钮名称'), _t('请输入侧边栏显示的文字，例如：闲言'));
     $side_bar2_mc->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar2_mc);
-    $side_bar2_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_url', NULL, "xysy.html", _t('侧边栏第2个按钮链接地址'), _t('请输入显示链接地址'));
+    $side_bar2_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_url', NULL, "xysy.html", _t('按钮链接（缩略名）'), _t('请输入目标页面的缩略名后缀，例如：<code>xysy.html</code>'));
     $side_bar2_url->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar2_url);
-    $side_bar3_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar3_mc', NULL, "工具", _t('侧边栏第3个按钮名称'), _t('请输入显示名称'));
+    
+    $side_bar3_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar3_mc', NULL, "工具", _t('<hr><div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #17a2b8; margin-bottom: 10px;"><strong>💡 独立页面提醒：</strong>若配置了此按钮，请务必在「管理 - 独立页面」中创建一个缩略名为对应前缀（不带 .html）的页面，否则点击将 404 报错。</div><strong>🔘 【侧边栏自定义按钮 2】</strong><br>按钮名称'), _t('请输入侧边栏显示的文字，例如：工具'));
     $side_bar3_mc->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar3_mc);
-    $side_bar3_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar3_url', NULL, "site.html", _t('侧边栏第3个按钮链接地址'), _t('请输入显示链接地址'));
+    $side_bar3_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar3_url', NULL, "site.html", _t('按钮链接（缩略名）'), _t('请输入目标页面的缩略名后缀，例如：<code>site.html</code>'));
     $side_bar3_url->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar3_url);
-    $side_bar4_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar4_mc', NULL, "友链", _t('侧边栏第4个按钮名称'), _t('请输入显示名称'));
+    
+    $side_bar4_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar4_mc', NULL, "友链", _t('<hr><div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #17a2b8; margin-bottom: 10px;"><strong>💡 独立页面提醒：</strong>若配置了此按钮，请务必在「管理 - 独立页面」中创建一个缩略名为对应前缀（不带 .html）的页面，否则点击将 404 报错。</div><strong>🔘 【侧边栏自定义按钮 3】</strong><br>按钮名称'), _t('请输入侧边栏显示的文字，例如：友链'));
     $side_bar4_mc->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar4_mc);
-    $side_bar4_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar4_url', NULL, "link.html", _t('侧边栏第4个按钮链接地址'), _t('请输入显示链接地址'));
+    $side_bar4_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar4_url', NULL, "link.html", _t('按钮链接（缩略名）'), _t('请输入目标页面的缩略名后缀，例如：<code>link.html</code>'));
     $side_bar4_url->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar4_url);
-    $side_bar5_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar5_mc', NULL, "关于", _t('侧边栏第5个按钮名称'), _t('请输入显示名称'));
+    
+    $side_bar5_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar5_mc', NULL, "关于", _t('<hr><div style="background-color: #f8f9fa; padding: 10px; border-left: 4px solid #17a2b8; margin-bottom: 10px;"><strong>💡 独立页面提醒：</strong>若配置了此按钮，请务必在「管理 - 独立页面」中创建一个缩略名为对应前缀（不带 .html）的页面，否则点击将 404 报错。</div><strong>🔘 【侧边栏自定义按钮 4】</strong><br>按钮名称'), _t('请输入侧边栏显示的文字，例如：关于'));
     $side_bar5_mc->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar5_mc);
-    $side_bar5_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar5_url', NULL, "about.html", _t('侧边栏第5个按钮链接地址'), _t('请输入显示链接地址'));
+    $side_bar5_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar5_url', NULL, "about.html", _t('按钮链接（缩略名）'), _t('请输入目标页面的缩略名后缀，例如：<code>about.html</code>'));
     $side_bar5_url->setAttribute('class', 'options-content options-more');
     $form->addInput($side_bar5_url);
 
