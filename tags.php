@@ -11,27 +11,21 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('layout/header.php');
 $this->need('layout/sidebar.php');
 
-// 预定义一些漂亮的渐变色，用于标签卡片封面
-$gradients = [
-    'linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%)',
-    'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
-    'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)',
-    'linear-gradient(135deg, #f6d365 0%, #fda085 100%)',
-    'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)',
-    'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
-    'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
-    'linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%)'
-];
+// 获取随机图数量用于封面计算
+$dir = './usr/themes/iCard/assets/img/sj/';
+$scanned = @scandir($dir);
+$n = is_array($scanned) ? count($scanned) - 2 : 0;
+if ($n <= 0) $n = 5;
 ?>
 
 <div class="col-12 col-md-12 col-lg-10 col_12" id="pjax">
     <div class="box box-content">
         <!-- 搜索框 -->
         <div class="pb-3">
-            <form method="get" action="<?php $this->options->siteUrl(); ?>" style="display: flex; gap: 0.5rem;">
-                <input type="text" name="s" placeholder="输入关键词搜索文章..." style="flex: 1; padding: 0.75rem 1rem; border: 1px solid #E0E4E8; border-radius: 0.75rem; font-size: 0.875rem; outline: none; background: #F7F9FA; color: #5E6E80;" />
-                <button type="submit" style="padding: 0.75rem 1.5rem; background: linear-gradient(142.17deg, #3086FF 6.66%, #304CFD 91.48%); color: #fff; border: none; border-radius: 0.75rem; font-size: 0.875rem; cursor: pointer; font-weight: 500;">
-                    <i class="icon-search" style="font-size: 0.875rem; margin-right: 0.25rem;"></i>搜索
+            <form onsubmit="return false;" style="display: flex; gap: 0.5rem;">
+                <input type="text" id="tag-search" placeholder="输入关键词查找标签..." style="flex: 1; padding: 0.75rem 1rem; border: 1px solid #E0E4E8; border-radius: 0.75rem; font-size: 0.875rem; outline: none; background: #F7F9FA; color: #5E6E80;" />
+                <button type="button" onclick="filterItems()" style="padding: 0.75rem 1.5rem; background: linear-gradient(142.17deg, #3086FF 6.66%, #304CFD 91.48%); color: #fff; border: none; border-radius: 0.75rem; font-size: 0.875rem; cursor: pointer; font-weight: 500;">
+                    <i class="icon-search" style="font-size: 0.875rem; margin-right: 0.25rem;"></i>查找
                 </button>
             </form>
         </div>
@@ -45,22 +39,22 @@ $gradients = [
         <div class="news-grid">
             <?php $this->widget('Widget_Metas_Tag_Cloud', 'sort=count&ignoreZeroCount=1&desc=1&limit=200')->to($tags); ?>
             <?php if ($tags->have()): ?>
-                <?php while ($tags->next()): 
-                    // 保证一个标签固定对应一个渐变色
-                    $colorIndex = abs(crc32($tags->slug)) % count($gradients);
-                    $bg = $gradients[$colorIndex];
+                <?php while ($tags->next()):
+                    // 保证一个标签固定对应一张缩略图
+                    $imgIndex = (abs(crc32($tags->slug)) % $n) + 1;
+                    $bg = $this->options->themeUrl . '/assets/img/sj/' . $imgIndex . '.jpg';
                 ?>
                 <article class="news-item box">
-                    <div class="news-item__image-wrap overlay overlay--45" style="background: <?php echo $bg; ?>; display: flex; align-items: center; justify-content: center; min-height: 140px;">
+                    <div class="news-item__image-wrap overlay overlay--45">
                         <a class="news-item__link" itemprop="url" href="<?php $tags->permalink(); ?>"></a>
-                        <i class="icon-tag" style="font-size: 3rem; color: rgba(255,255,255,0.8); z-index: 1;"></i>
+                        <img class="news-item-image cover ls-is-cached lazyloaded" src="<?php echo $bg; ?>" alt="<?php $tags->name(); ?>">
                         <div class="news-item__sort">
-                            <span style="color:#fff; background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 4px;">
+                            <span style="color:#fff;">
                                 # <?php $tags->name(); ?>
                             </span>
                         </div>
                         <div class="news-item__date">
-                            <span style="background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 4px;"><?php echo intval($tags->count); ?> 篇</span>
+                            <span><?php echo intval($tags->count); ?> 篇</span>
                         </div>
                     </div>
                     <div class="news-item__caption">
@@ -80,6 +74,22 @@ $gradients = [
             <?php endif; ?>
         </div>
     </div>
+
+    <script>
+    function filterItems() {
+        const keyword = document.getElementById('tag-search').value.toLowerCase();
+        const items = document.querySelectorAll('.news-grid .news-item');
+        items.forEach(item => {
+            const title = item.querySelector('.title--h4 a').innerText.toLowerCase();
+            if (title.includes(keyword)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+    document.getElementById('tag-search').addEventListener('input', filterItems);
+    </script>
 
     <?php $this->need('layout/footer.php'); ?>
 </div>
