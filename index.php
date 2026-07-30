@@ -80,17 +80,39 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 <!-- layout/footer -->
 <script src="/usr/themes/iCard/assets/js/jquery-3.6.0.min.js"></script>
 <script>
-function updateActiveLink() {
-  var xianhao_url = window.location.pathname;
-  $('.nav__item a').removeClass('active');
-
-  if (xianhao_url == '<?php $this->options->siteUrl(); ?>') {
-    $('a[href="' + xianhao_url + '"]').addClass('active');
-  } else {
-    var rootUrl = '<?php $this->options->siteUrl(); ?>';
-    $('a[href="' + rootUrl + xianhao_url.substring(1) + '"]').addClass('active');
+// 侧边栏高亮 —— 修复不稳定的 active 状态
+  function updateActiveLink() {
+    var currentPath = window.location.pathname;
+    // 去掉尾部斜杠统一对比
+    currentPath = currentPath.replace(/\/$/, '');
+    
+    // 遍历所有侧边栏链接，按路径匹配
+    $('.nav__item a[data-pjax-state]').each(function () {
+      var linkHref = $(this).attr('href');
+      if (!linkHref || linkHref === 'javascript:;') return;
+      
+      // 构造 URL 对象提取路径
+      try {
+        var linkUrl = new URL(linkHref, window.location.origin);
+        var linkPath = linkUrl.pathname.replace(/\/$/, '');
+      } catch (e) {
+        var linkPath = linkHref.replace(/\/$/, '');
+      }
+      
+      // 匹配后添加 active
+      $(this).toggleClass('active', linkPath === currentPath);
+    });
   }
-}
+
+  // 分类/标签折叠展开
+  $('.nav-category-toggle').on('click', function(e) {
+    e.preventDefault();
+    $(this).parent().find('.nav-sub').slideToggle(200);
+  });
+  $('.nav-tag-toggle').on('click', function(e) {
+    e.preventDefault();
+    $(this).parent().find('.nav-sub').slideToggle(200);
+  });
 
 // 页面首次加载时运行
 updateActiveLink();

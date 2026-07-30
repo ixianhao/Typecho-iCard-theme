@@ -50,12 +50,13 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $headbgImgUrl->setAttribute('class', 'options-content options-home');
     $form->addInput($headbgImgUrl);
 
-    $side_bar_cat_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar_cat_mc', NULL, "分类", _t('<h3>分类标签页设置</h3>侧边栏分类按钮名称（留空则不显示）'), _t('请输入显示名称，如"分类"'));
-    $side_bar_cat_mc->setAttribute('class', 'options-content options-more');
-    $form->addInput($side_bar_cat_mc);
-    $side_bar_cat_url = new Typecho_Widget_Helper_Form_Element_Text('side_bar_cat_url', NULL, "", _t('侧边栏分类按钮链接地址'), _t('请输入分类标签页的缩略名，如"categories.html"。在后台创建独立页面，选择模板"分类 & 标签"，缩略名填此处相同的值。留空不显示分类入口。'));
-    $side_bar_cat_url->setAttribute('class', 'options-content options-more');
-    $form->addInput($side_bar_cat_url);
+    // 分类/标签显示开关 —— 调用 Typecho 系统默认分类和标签能力
+    $showCategories = new Typecho_Widget_Helper_Form_Element_Radio('showCategories', array(
+        '0' => '关闭',
+        '1' => '开启',
+    ), '0', _t('<h3>分类与标签</h3>是否在侧边栏显示分类和标签入口？'), _t('开启后将使用 Typecho 默认的分类和标签系统，自动展示在侧边栏中。'));
+    $showCategories->setAttribute('class', 'options-content options-more');
+    $form->addInput($showCategories);
 
     $side_bar2_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_mc', NULL, "闲言", _t('<h2>首页侧边栏地址</h2><h4>因侧边栏链接调用了站点地址，请在后台-基本设置-站点地址中设置好自己的站点地址，否则会访问异常。</h4>侧边栏第2个按钮名称'), _t('请输入显示名称'));
     $side_bar2_mc->setAttribute('class', 'options-content options-more');
