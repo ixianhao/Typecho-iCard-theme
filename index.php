@@ -104,16 +104,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     });
   }
 
-  // 分类/标签折叠展开
-  $('.nav-category-toggle').on('click', function(e) {
-    e.preventDefault();
-    $(this).parent().find('.nav-sub').slideToggle(200);
-  });
-  $('.nav-tag-toggle').on('click', function(e) {
-    e.preventDefault();
-    $(this).parent().find('.nav-sub').slideToggle(200);
-  });
-
 // 页面首次加载时运行
 updateActiveLink();
 
