@@ -54,7 +54,20 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $showCategories = new Typecho_Widget_Helper_Form_Element_Radio('showCategories', array(
         '0' => '关闭',
         '1' => '开启',
-    ), '0', _t('<h2>侧边栏设置</h2><p>因侧边栏链接调用了站点地址，请在后台-基本设置-站点地址中设置好自己的站点地址，否则会访问异常。</p><hr><h3>侧边栏分类</h3>是否在侧边栏显示分类入口？'), _t('开启后将使用 Typecho 默认分类系统，自动列出所有分类及其文章数。<br><strong style="color:red;">【注意】请在后台创建独立页面，缩略名必须填 categories，模板选择「分类」。</strong>'));
+    ), '0', _t('<h2>侧边栏设置</h2>
+    <div style="background-color: #fff3cd; color: #856404; padding: 10px 15px; border-radius: 4px; border-left: 4px solid #ffeeba; margin-bottom: 15px;">
+        <strong>📢 站点链接提示：</strong>因侧边栏链接调用了站点地址，请确保在「后台 - 设置 - 基本 - 站点地址」中正确配置了你的域名，否则侧边栏按钮可能会跳转异常或出现 404。
+    </div>
+    <hr>
+    <div style="background-color: #e8f4fd; color: #0056b3; padding: 10px 15px; border-radius: 4px; border-left: 4px solid #b8daff; margin-bottom: 15px;">
+        <strong>💡 分类与标签独立页面配置提醒：</strong><br>
+        如果您开启了下方的「侧边栏分类」或「侧边栏标签」，为了让它们能正常点击跳转，您必须完成以下操作：<br>
+        1. 在后台「管理 - 独立页面」中点击【新增】<br>
+        2. 分类页面：标题随意，<strong>缩略名必须填 <code>categories</code></strong>，右侧展开高级选项，<strong>自定义模板选择「分类」</strong><br>
+        3. 标签页面：标题随意，<strong>缩略名必须填 <code>tags</code></strong>，右侧展开高级选项，<strong>自定义模板选择「标签」</strong><br>
+        完成后发布页面即可正常使用。
+    </div>
+    <h3>侧边栏分类</h3>是否在侧边栏显示分类入口？'), _t('开启后将使用 Typecho 默认分类系统，自动列出所有分类。'));
     $showCategories->setAttribute('class', 'options-content options-more');
     $form->addInput($showCategories);
 
@@ -62,7 +75,7 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $showTags = new Typecho_Widget_Helper_Form_Element_Radio('showTags', array(
         '0' => '关闭',
         '1' => '开启',
-    ), '0', _t('<h3>侧边栏标签</h3>是否在侧边栏显示标签入口？'), _t('开启后将使用 Typecho 默认标签系统，自动列出所有标签。<br><strong style="color:red;">【注意】请在后台创建独立页面，缩略名必须填 tags，模板选择「标签」。</strong>'));
+    ), '0', _t('<h3>侧边栏标签</h3>是否在侧边栏显示标签入口？'), _t('开启后将使用 Typecho 默认标签系统，自动列出所有标签。'));
     $showTags->setAttribute('class', 'options-content options-more');
     $form->addInput($showTags);
 
