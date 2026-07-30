@@ -50,13 +50,21 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $headbgImgUrl->setAttribute('class', 'options-content options-home');
     $form->addInput($headbgImgUrl);
 
-    // 分类/标签显示开关 —— 调用 Typecho 系统默认分类和标签能力
+    // 分类显示开关 —— 调用 Typecho 系统默认分类能力
     $showCategories = new Typecho_Widget_Helper_Form_Element_Radio('showCategories', array(
         '0' => '关闭',
         '1' => '开启',
-    ), '0', _t('<h3>分类与标签</h3>是否在侧边栏显示分类和标签入口？'), _t('开启后将使用 Typecho 默认的分类和标签系统，自动展示在侧边栏中。'));
+    ), '0', _t('<h3>侧边栏分类</h3>是否在侧边栏显示分类入口？'), _t('开启后将使用 Typecho 默认分类系统，自动列出所有分类及其文章数。'));
     $showCategories->setAttribute('class', 'options-content options-more');
     $form->addInput($showCategories);
+
+    // 标签显示开关 —— 调用 Typecho 系统默认标签能力
+    $showTags = new Typecho_Widget_Helper_Form_Element_Radio('showTags', array(
+        '0' => '关闭',
+        '1' => '开启',
+    ), '0', _t('<h3>侧边栏标签</h3>是否在侧边栏显示标签入口？'), _t('开启后将使用 Typecho 默认标签系统，自动列出所有标签。'));
+    $showTags->setAttribute('class', 'options-content options-more');
+    $form->addInput($showTags);
 
     $side_bar2_mc = new Typecho_Widget_Helper_Form_Element_Text('side_bar2_mc', NULL, "闲言", _t('<h2>首页侧边栏地址</h2><h4>因侧边栏链接调用了站点地址，请在后台-基本设置-站点地址中设置好自己的站点地址，否则会访问异常。</h4>侧边栏第2个按钮名称'), _t('请输入显示名称'));
     $side_bar2_mc->setAttribute('class', 'options-content options-more');
