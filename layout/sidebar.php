@@ -8,6 +8,13 @@
                     <i class="icon-home"></i>首页
                 </a>
             </li>
+            <?php if ($this->options->side_bar_cat_url): ?>
+            <li class="nav__item">
+                <a href="<?php echo $this->options->siteUrl() . $this->options->side_bar_cat_url(); ?>" data-pjax-state class=" <?php if($this->is('page', $this->options->side_bar_cat_url)): ?> active <?php endif; ?>">
+                    <i class="icon-folder-open"></i><?php $this->options->side_bar_cat_mc() ?>
+                </a>
+            </li>
+            <?php endif; ?>
             <li class="nav__item">
                 <a href="<?php echo $this->options->siteUrl() . $this->options->side_bar2_url(); ?>" data-pjax-state class=" <?php if($this->is('page', '<?php $this->options->side_bar2_url(); ?>')): ?> active <?php endif; ?>">
                     <i class="icon-smile"></i><?php $this->options->side_bar2_mc() ?>

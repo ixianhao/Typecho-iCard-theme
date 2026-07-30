@@ -36,10 +36,10 @@
             <span><?php $comments->author(); ?><span class="badge"><?php echo $group; ?></span></span> 
             <span style="font-size: 0.9375rem;"><?php $comments->reply('<i class="font-icon icon-reply"></i> 回复'); ?> </span>
             </h5>
-            <div><?php echo getPermalinkFromCoid($comments->parent);echo preg_replace('#</?[p][^>]*>#','', reEmo($comments->content)); ?></div>
+            <div><?php echo getPermalinkFromCoid($comments->parent);echo preg_replace('#</?[p][^>]*>#','', reEmo((string)$comments->content)); ?></div>
             <ul class="comment-box__footer">
                 <li class="comment-box__details-date"> <?php echo timesince($comments->created);?></li>
-                <li> <span><?php GetOs($comments->agent); ?> · <?php GetBrowser($comments->agent); ?></span></li>
+                <li> <span><?php GetOs((string)$comments->agent); ?> · <?php GetBrowser((string)$comments->agent); ?></span></li>
             </ul>
         </div><!-- 单条评论者信息及内容 -->
     </div>

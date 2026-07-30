@@ -2,6 +2,58 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 require_once("options/index.php");
 
+/**
+ * reEmo - 替换 OwO 表情标记为 HTML（PHP 8.x 兼容）
+ * 如果不存在则定义基础版本
+ */
+if (!function_exists('reEmo')) {
+    function reEmo($content) {
+        if (empty($content)) return '';
+        return $content;
+    }
+}
+
+/**
+ * ParseAvatar - 解析 Gravatar 头像 URL（PHP 8.x 兼容）
+ */
+if (!function_exists('ParseAvatar')) {
+    function ParseAvatar($mail) {
+        if (empty($mail)) {
+            echo 'https://cravatar.cn/avatar/null?s=100';
+            return;
+        }
+        $hash = md5(strtolower(trim($mail)));
+        echo 'https://cravatar.cn/avatar/' . $hash . '?s=';
+    }
+}
+
+/**
+ * GetOs - 获取评论者操作系统（PHP 8.x 兼容）
+ */
+if (!function_exists('GetOs')) {
+    function GetOs($agent) {
+        if (empty($agent)) {
+            echo '未知系统';
+            return;
+        }
+        if (preg_match('/win/i', $agent)) {
+            echo 'Windows';
+        } elseif (preg_match('/mac/i', $agent)) {
+            echo 'macOS';
+        } elseif (preg_match('/linux/i', $agent)) {
+            echo 'Linux';
+        } elseif (preg_match('/unix/i', $agent)) {
+            echo 'Unix';
+        } elseif (preg_match('/android/i', $agent)) {
+            echo 'Android';
+        } elseif (preg_match('/iphone|ipad|ipod/i', $agent)) {
+            echo 'iOS';
+        } else {
+            echo '未知系统';
+        }
+    }
+}
+
 function themeInit($archive){
     //暴力解决访问加密文章会被 pjax 刷新页面的问题
     if ($archive->hidden) header('HTTP/1.1 200 OK');
@@ -29,10 +81,13 @@ function showThumbnail($widget)
 { 
     // 当文章无图片时的默认缩略图
     $dir = './usr/themes/iCard/assets/img/sj/';//随机缩略图目录
-    $n=sizeof(scandir($dir))-2;
+    // PHP 8.x 兼容：scandir 可能返回 false
+    $scanned = @scandir($dir);
+    $n = is_array($scanned) ? count($scanned) - 2 : 0;
     if($n <= 0){
     $n=5;
     }// 异常处理，干掉自动判断图片数量的功能，切换至手动
+    if ($n < 1) $n = 1; // PHP 8.x 兼容：rand(1, 0) 会抛异常
     $rand = rand(1,$n); 
     // 随机 n张缩略图
  
@@ -43,33 +98,37 @@ if(Typecho_Widget::widget('Widget_Options')->slimg && 'Showimg'==Typecho_Widget:
 }
 
 $cai = '';//这里可以添加图片后缀，例如七牛的缩略图裁剪规则，这里默认为空
-    $attach = $widget->attachments(1)->attachment;
+    // PHP 8.x 兼容：attachments(1) 可能返回 null
+    $attachmentsResult = $widget->attachments(1);
+    $attach = ($attachmentsResult && isset($attachmentsResult->attachment)) ? $attachmentsResult->attachment : null;
+    $ctu = $random; // PHP 8.x 兼容：初始化默认值，防止未定义变量
     $pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i'; 
   $patternMD = '/\!\[.*?\]\((http(s)?:\/\/.*?(jpg|png))/i';
     $patternMDfoot = '/\[.*?\]:\s*(http(s)?:\/\/.*?(jpg|png))/i';
-if (preg_match_all($pattern, $widget->content, $thumbUrl)) {
+if (preg_match_all($pattern, (string)$widget->content, $thumbUrl) && !empty($thumbUrl[1])) {
 $ctu = $thumbUrl[1][0].$cai;
     }
 
 //如果是内联式markdown格式的图片
-  else   if (preg_match_all($patternMD, $widget->content, $thumbUrl)) {
+  else   if (preg_match_all($patternMD, (string)$widget->content, $thumbUrl) && !empty($thumbUrl[1])) {
 $ctu = $thumbUrl[1][0].$cai;
     }
     //如果是脚注式markdown格式的图片
-    else if (preg_match_all($patternMDfoot, $widget->content, $thumbUrl)) {
+    else if (preg_match_all($patternMDfoot, (string)$widget->content, $thumbUrl) && !empty($thumbUrl[1])) {
 $ctu = $thumbUrl[1][0].$cai;
     }
 
  else
-if ($attach && $attach->isImage) {
+if ($attach && isset($attach->isImage) && $attach->isImage) {
 
 $ctu = $attach->url.$cai;
     } 
 else 
 
-if ($widget->tags) {
+// PHP 8.x 兼容：tags 可能为 null 或空
+if (!empty($widget->tags) && is_array($widget->tags)) {
 foreach ($widget->tags as $tag) {
-
+    if (!isset($tag['slug'])) continue;
     $ctu = './usr/themes/iCard/assets/img/tag/' . $tag['slug'] . '.jpg';
 
     if(is_file($ctu))
@@ -88,7 +147,7 @@ $ctu = $random;
 }
 if(Typecho_Widget::widget('Widget_Options')->slimg && 'showoff'==Typecho_Widget::widget('Widget_Options')->slimg
 ){
-if($widget->fields->thumb){$ctu = $widget->fields->thumb;}
+if(isset($widget->fields) && isset($widget->fields->thumb) && $widget->fields->thumb){$ctu = $widget->fields->thumb;}
 if($ctu== $random)
 echo '';
 else
@@ -100,7 +159,7 @@ echo '<img src="'
 '">';
 }
 }else{
-if($widget->fields->thumb){$ctu = $widget->fields->thumb;}
+if(isset($widget->fields) && isset($widget->fields->thumb) && $widget->fields->thumb){$ctu = $widget->fields->thumb;}
   if(!$widget->is('post')&&!$widget->is('page')){
 if(Typecho_Widget::widget('Widget_Options')->slimg && 'allsj'==Typecho_Widget::widget('Widget_Options')->slimg
 ){$ctu = $random;}
@@ -118,9 +177,11 @@ echo $ctu;
 function tagsNum($display = true)
 {
 $db = Typecho_Db::get();
-$total_tags = $db->fetchObject($db->select(array('COUNT(mid)' => 'num'))
+$result = $db->fetchObject($db->select(array('COUNT(mid)' => 'num'))
 ->from('table.metas')
-->where('table.metas.type = ?', 'tag'))->num;
+->where('table.metas.type = ?', 'tag'));
+// PHP 8.x 兼容：fetchObject 可能返回 null
+$total_tags = ($result && isset($result->num)) ? intval($result->num) : 0;
 if($display) {
 echo $total_tags;
 } else {

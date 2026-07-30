@@ -1,6 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<?php $this->need('header.php'); ?>
-<?php $this->need('sidebar.php'); ?>
+<?php $this->need('layout/header.php'); ?>
+<?php $this->need('layout/sidebar.php'); ?>
 
 <div class="col-12 col-md-12 col-lg-10 col_12" id='pjax'>
   <div class="box box-content">
@@ -228,4 +228,4 @@
   </div><!-- end #main-->
 
 
-  <?php $this->need('footer.php'); ?>
+  <?php $this->need('layout/footer.php'); ?>
