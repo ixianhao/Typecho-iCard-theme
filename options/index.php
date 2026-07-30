@@ -54,7 +54,7 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $showCategories = new Typecho_Widget_Helper_Form_Element_Radio('showCategories', array(
         '0' => '关闭',
         '1' => '开启',
-    ), '0', _t('<h3>侧边栏分类</h3>是否在侧边栏显示分类入口？'), _t('开启后将使用 Typecho 默认分类系统，自动列出所有分类及其文章数。'));
+    ), '0', _t('<h3>侧边栏分类</h3>是否在侧边栏显示分类入口？'), _t('开启后将使用 Typecho 默认分类系统，自动列出所有分类及其文章数。<br><strong style="color:red;">【注意】请在后台创建独立页面，缩略名必须填 categories，模板选择「分类」。</strong>'));
     $showCategories->setAttribute('class', 'options-content options-more');
     $form->addInput($showCategories);
 
@@ -62,7 +62,7 @@ echo '<script src="' . Helper::options()->themeUrl . '/assets/styles/options.js"
     $showTags = new Typecho_Widget_Helper_Form_Element_Radio('showTags', array(
         '0' => '关闭',
         '1' => '开启',
-    ), '0', _t('<h3>侧边栏标签</h3>是否在侧边栏显示标签入口？'), _t('开启后将使用 Typecho 默认标签系统，自动列出所有标签。'));
+    ), '0', _t('<h3>侧边栏标签</h3>是否在侧边栏显示标签入口？'), _t('开启后将使用 Typecho 默认标签系统，自动列出所有标签。<br><strong style="color:red;">【注意】请在后台创建独立页面，缩略名必须填 tags，模板选择「标签」。</strong>'));
     $showTags->setAttribute('class', 'options-content options-more');
     $form->addInput($showTags);
 
